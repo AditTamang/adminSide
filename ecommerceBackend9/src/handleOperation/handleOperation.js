@@ -1,14 +1,17 @@
 import axios from "axios";
 
-// const BASE_URL = "http://localhost:4000/api/";
-
-export const handeGetOperation = async (url) => {
+export const handleGetOperation = async (url) => {
   const result = await axios.get(url, { withCredentials: true });
-  console.log(result);
-  return result.data.data;
+
+  return result;
 };
 
 export const handlePostOperation = async (url, data) => {
   const result = await axios.post(url, data, { withCredentials: true });
   return result.data;
+};
+
+export const handleDeleteOperation = async (url) => {
+  const result = await axios.delete(url);
+  return result;
 };

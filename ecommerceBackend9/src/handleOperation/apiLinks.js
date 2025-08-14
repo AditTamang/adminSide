@@ -1,5 +1,7 @@
-const apiLinks = {
-  getAllProduct: `${BASE_URL}/product/getAllProduct`,
-};
+const BASE_URL = "http://localhost:4000/api";
 
-export { apiLinks };
+export const apiLinks = {
+  getAllProduct: `${BASE_URL}/product/getAllProduct`,
+  deleteProduct: (id) => `${BASE_URL}/product/deleteProductById/${id}`,
+  userLogin: `${BASE_URL}/auth/login`,
+};

@@ -5,6 +5,7 @@ import Layout from './components/admin/Layout'
 import Product from './pages/admin/dashboard/product/Product'
 import TrialLayout from './pages/admin/user/TrialLayout'
 import Greetings from './pages/admin/user/Greetings'
+import Login from './pages/admin/auth/Login'
 
 const App = () => {
   return (
@@ -18,11 +19,13 @@ const App = () => {
             <Route path="admin/product" element={<Product />} />
           </Route>
 
-          <Route element={<TrialLayout />}>
+          <Route path='/admin/login' element={<Login />} />
+
+          {/* <Route element={<TrialLayout />}>
             <Route path="/welcome" element={<Welcome />}>
               <Route path='/greeting' element={<Greetings />} />
             </Route>
-          </Route>
+          </Route> */}
 
         </Routes>
       </BrowserRouter>
