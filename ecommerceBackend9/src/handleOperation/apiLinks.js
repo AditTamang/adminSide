@@ -4,4 +4,8 @@ export const apiLinks = {
   getAllProduct: `${BASE_URL}/product/getAllProduct`,
   deleteProduct: (id) => `${BASE_URL}/product/deleteProductById/${id}`,
   userLogin: `${BASE_URL}/auth/login`,
+  createProduct: `${BASE_URL}/product/createProduct`,
+  getSingleProduct: (id) => {
+    `${BASE_URL}/product/getProductById/${id}`;
+  },
 };

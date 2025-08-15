@@ -6,6 +6,8 @@ import Product from './pages/admin/dashboard/product/Product'
 import TrialLayout from './pages/admin/user/TrialLayout'
 import Greetings from './pages/admin/user/Greetings'
 import Login from './pages/admin/auth/Login'
+import ProductCreate from './pages/admin/dashboard/product/ProductCreate'
+import UpdateProduct from './pages/admin/dashboard/product/UpdateProduct'
 
 const App = () => {
   return (
@@ -16,16 +18,12 @@ const App = () => {
 
           <Route element={<Layout />} >
             <Route path='/admin/' element={<Dashboard />} />
-            <Route path="admin/product" element={<Product />} />
+            <Route path='/admin/product' element={<Product />} />
+            <Route path="admin/createProduct" element={<ProductCreate />} />
+            <Route path="admin/updateProduct/:id" element={<UpdateProduct />} />
           </Route>
 
           <Route path='/admin/login' element={<Login />} />
-
-          {/* <Route element={<TrialLayout />}>
-            <Route path="/welcome" element={<Welcome />}>
-              <Route path='/greeting' element={<Greetings />} />
-            </Route>
-          </Route> */}
 
         </Routes>
       </BrowserRouter>
