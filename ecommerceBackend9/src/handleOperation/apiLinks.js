@@ -6,6 +6,7 @@ export const apiLinks = {
   userLogin: `${BASE_URL}/auth/login`,
   createProduct: `${BASE_URL}/product/createProduct`,
   getSingleProduct: (id) => {
-    `${BASE_URL}/product/getProductById/${id}`;
-  },
+    return `${BASE_URL}/product/getProductById/${id}`;
+  }, // yedi maile small bracker use gareko bhaye chai teti khera chai return garnu pardaina thiyo
+  productUpdate: (id) => `${BASE_URL}/product/updateProductById/${id}`,
 };

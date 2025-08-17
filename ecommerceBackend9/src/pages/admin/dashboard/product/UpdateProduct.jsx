@@ -1,14 +1,10 @@
 import { useEffect, useState } from "react"
-import { Form, useParams } from "react-router-dom"
+import { Form, useNavigate, useParams } from "react-router-dom"
 import { handleGetOperation, handlePostOperation } from "../../../../handleOperation/handleOperation"
 import { apiLinks } from "../../../../handleOperation/apiLinks"
 
 
 const UpdateProduct = () => {
-
-    const params = useParams()
-
-    const id = params.id
 
     const [formdata, setformdata] = useState({
         productName: '',
@@ -19,12 +15,16 @@ const UpdateProduct = () => {
         display: '',
         productDescription: ''
     })
-    const [file, setFile] = useState(null)
+
+    const [file, setFile] = useState('')
+
+    const params = useParams()
+    const id = params.id
+    const navigate = useNavigate()
 
     useEffect(() => {
-        const id = params.id
         const fetchProduct = async () => {
-
+            // console.log("from hre",apiLinks.getSingleProduct(id))
             const result = await handleGetOperation(apiLinks.getSingleProduct(id))
             console.log(result.data.data)
             setformdata({
@@ -40,7 +40,6 @@ const UpdateProduct = () => {
             if (result.data.data.imageUrl) {
                 setFile(result.data.data.imageUrl)
             }
-
         }
         fetchProduct()
     }, [])
@@ -49,9 +48,7 @@ const UpdateProduct = () => {
         const name = e.target.name
         const value = e.target.value
 
-
         setformdata({ ...formdata, [name]: value })
-
 
     }
 
@@ -81,14 +78,20 @@ const UpdateProduct = () => {
         data.append('price', formdata.price)
 
 
-        await handlePostOperation(apiLinks.createProduct, data)
-
-
+        const result = await handlePostOperation(apiLinks.productUpdate(id), data)
+        console.log(result)
+        if (result.status == 200) {
+            alert("Product updated successfully")
+            navigate('/admin/product')
+        }
     }
 
     const handleImageChange = (e) => {
 
-        setFile(e.target.files[0])
+        console.log(e.target.files)
+        const newImg = URL.createObjectURL(e.target.files[0])
+        setFile(newImg)
+        console.log(newImg)
     }
 
 
@@ -122,6 +125,9 @@ const UpdateProduct = () => {
                         <div className="mt-4">
                             <label htmlFor="city" className="block text-gray-700 dark:text-white mb-1">Image</label>
                             <input type="file" id="city" onChange={handleImageChange} required className="w-full rounded-lg border py-2 px-3 dark:bg-gray-700 dark:text-white dark:border-none" />
+                        </div>
+                        <div>
+                            <img src={file} alt="hello" />
                         </div>
                         <div className="grid grid-cols-2 gap-4 mt-4">
                             <div>
